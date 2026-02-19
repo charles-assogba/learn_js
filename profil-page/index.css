@@ -1,0 +1,73 @@
+body{
+    margin:0;
+}
+.image{
+  height: 100px;
+  width: 100px;
+  position: absolute;
+  margin: 20px;
+  border-radius: 50px;
+  background-image: url("./images/image1.jpg");
+  background-repeat: no-repeat;
+  background-size: 100px 100px;
+}
+section{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    height: 100vh;
+    zoom: 1;
+    padding: 20px;
+}
+.left{
+    background-color: bisque;
+    flex: 1;
+    padding: 20px;
+    
+}
+.right{
+    background-color: burlywood;
+    flex: 2;
+    color: black;
+    padding: 20px;
+    font-weight: bold;
+    transition: color 0.5s ease;
+}
+.name{
+    margin-left: 150px;
+    margin-top: 25px;
+    font-family: cursive;
+    font-size: large;
+}
+.description{
+    margin-top: 20px;
+    margin-left: 20px;
+}
+.contact{
+    margin-top: 20px;
+    margin-left: 20px;
+}
+.email{
+    margin-top: 30px;
+    margin-left: 20px;
+}
+h1{
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+ul{
+    margin-top: 20px;
+}
+@media screen and (max-width: 600px) {
+    .left{
+       flex-direction: row;
+       background-color: aquamarine;
+    }
+}
+@media screen and (max-width: 300px) {
+    .left{
+       flex-direction: row;
+       background-color: aquamarine;
+    }
+}
+

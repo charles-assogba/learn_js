@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>todo app</title>
+    <link href="style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <section>
+      <div class="container">
+        <h1>Todo-List</h1>
+       
+          <input
+            class="text"
+            placeholder="add a new todo here"
+            type="text"
+            name="text"
+          />
+        
+        <ul class="Todo-List">
+
+        </ul>
+      </div>
+    </section>
+  </body>
+  <script>
+    const textSelect = document.querySelector(".container");
+    textSelect.addEventListener("keydown", function (event) {
+      if (event.key == "Enter") {
+        const todoText = event.target.value.trim();
+        if (todoText !== null) {
+          addText(todoText);
+          event.target.value = "";
+        }
+      }
+    });
+
+    async function addText(Text) {
+      const todoList = document.querySelector(".Todo-List");
+      const todoItem = document.createElement("li");
+      todoItem.className = "Todo-Item";
+      todoItem.innerHTML = `
+      <h1>${Text}</h1>
+      <div>
+        <button onclick ="toogleComplete(this)">check</button>
+        <button onclick ="deleteTodoItem(this)">delete</button>
+      <div/>
+      `;
+      todoList.appendChild(todoItem);
+    }
+
+    function toogleComplete(button){ 
+     const todoItem = button.parentElement.parentElement;
+     const toogle = todoItem.classList.toggle("completed");
+     console.log(toogle?"is on":"is off");
+    }
+
+    function deleteTodoItem(button){
+     const todoItem = button.parentElement.parentElement;
+     todoItem.remove();
+    }
+  </script>
+</html>

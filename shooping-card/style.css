@@ -1,0 +1,14 @@
+section{
+    display: flex;
+}
+.container{
+    margin: auto;
+    background-color: darkorange;
+    padding: 30px;
+    border-radius: 8px;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+input[type=text]{
+    border: 3px solid lightskyblue;
+}
