@@ -1,0 +1,7 @@
+section{
+    display: flex;
+}
+.container{
+    flex-direction: row;
+    flex-wrap: row;
+}

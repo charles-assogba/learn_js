@@ -37,6 +37,7 @@
       let list = document.querySelector(".list");
       list.innerHTML = "";
       let localData = JSON.parse(localStorage.getItem("localData")) || [];
+      //loop to display data
       localData.forEach((task, index) => {
         let item = document.createElement("li");
         item.innerHTML = `
