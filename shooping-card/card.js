@@ -1,42 +1,36 @@
 const productName = document.querySelector(".productName");
 const productPrice = document.querySelector(".productPrice");
 const addBtn = document.querySelector(".addBtn");
+let card = [];
+let total = 0;
 addBtn.addEventListener("click", () => {
   let name = productName.value.trim();
-  let price = productPrice.value.trim();
+  let price = parseFloat(productPrice.value);
   add(name, price);
   productName.value = "";
   productPrice.value = "";
 });
 //function to add to the card
 const add = (name, price) => {
-  let localData = JSON.parse(localStorage.getItem("localData")) || [];
-  localData.push(productName.value);
-  localData.push(productPrice.value);
-  localStorage.setItem("localData", JSON.stringify(localData));
-  display(name, price);
-};
-//function to display
-const display = (name, price) => {
+  const item = document.createElement("li");
+  item.innerHTML = `
+  <p>${name} ${price}</p>
+  <button onClick='removeTask(this)'>Remove</button>
+  `;
   const list = document.querySelector(".list");
-  let total = document.querySelector(".total");
-  list.innerHTML = "";
-  const localData = JSON.parse(localStorage.getItem("localData")) || [];
-  // console.log(localData);
-  localData.forEach((name, index) => {
-    let item = document.createElement("li");
-    item.innerHTML = `
-    <p>${name} ${price}</p>
-    <button onClick='removeTask(${index})'>Remove</button>
-    `;
-    list.appendChild(item);
-});
+  list.appendChild(item);
+  card.push({ name, price });
+  const li = document.createElement("li");
+  card.forEach((item, index) => {
+    total += item.price;
+  });
+  li.innerHTML = `${total}`;
+  const t = document.querySelector(".total");
+  t.appendChild(li);
 };
+
 //function for removing tasks
-    const removeTask = (index) => {
-      let localData = JSON.parse(localStorage.getItem("localData")) || [];
-      localData.splice(index, 1);
-      localStorage.setItem("localData", JSON.stringify(localData));
-      display();
-    };
-display();
+const removeTask = (button) => {
+  const itemRemove = button.parentElement.parentElement;
+  itemRemove.remove();
+};
