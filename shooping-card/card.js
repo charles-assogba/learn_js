@@ -2,7 +2,7 @@ const productName = document.querySelector(".productName");
 const productPrice = document.querySelector(".productPrice");
 const addBtn = document.querySelector(".addBtn");
 let card = [];
-let total = 0;
+
 addBtn.addEventListener("click", () => {
   let name = productName.value.trim();
   let price = parseFloat(productPrice.value);
@@ -12,6 +12,7 @@ addBtn.addEventListener("click", () => {
 });
 //function to add to the card
 const add = (name, price) => {
+  //Display the input name and price of the user
   const item = document.createElement("li");
   item.innerHTML = `
   <p>${name} ${price}</p>
@@ -19,18 +20,26 @@ const add = (name, price) => {
   `;
   const list = document.querySelector(".list");
   list.appendChild(item);
+  //Put the items into the array card[]
   card.push({ name, price });
-  const li = document.createElement("li");
+  //loop foreach to calculate the cumule total for all items
+  let total = 0;
   card.forEach((item, index) => {
     total += item.price;
   });
-  li.innerHTML = `${total}`;
-  const t = document.querySelector(".total");
-  t.appendChild(li);
+  //display the total
+  const totalDisplay = document.querySelector(".total");
+  totalDisplay.innerHTML = `Total: $ ${total}`;
 };
 
 //function for removing tasks
 const removeTask = (button) => {
   const itemRemove = button.parentElement.parentElement;
+  card.forEach((item,index)=>{{
+    total =- item.price;
+  }});
+  //display the total
+  const totalDisplay = document.querySelector(".total");
+  totalDisplay.innerHTML = `Total: $ ${total}`;
   itemRemove.remove();
 };
