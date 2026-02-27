@@ -1,9 +1,14 @@
 const input = document.querySelector(".input");
 const button = document.querySelector(".btn");
 const tab = document.querySelector(".tab");
+
 //get input value by clicking the button +Todo
 button.addEventListener("click", () => {
   let inputValue = input.value.trim();
+  let card = [];
+  card.push(inputValue);
+  localStorage.setItem("tabSave",JSON.stringify(card));
+  const data = JSON.parse(localStorage.getItem("tabSave"));
   if (inputValue !== "") {
     let tableau = document.createElement("table");
     tableau.innerHTML = `
