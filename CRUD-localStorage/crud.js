@@ -19,7 +19,7 @@ button.addEventListener("click", () => {
           <tr>
                 <td>${element}</td>
                 <td>
-                  <button class="btnComplete" onClick="completeBtn(${index})">Complete</button>
+                  <button class="btnComplete" onClick="completeBtn(this)">Complete</button>
                   <button class="btnEdit" onClick="editBtn(${index})">Edit</button>
                   <button class="btnDelete" onClick="deleteBtn(${index})">Delete</button>
                 </td>
