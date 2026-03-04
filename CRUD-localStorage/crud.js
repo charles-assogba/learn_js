@@ -13,8 +13,8 @@ button.addEventListener("click", () => {
   //Here i insert the localData element into the table
   if (inputValue !== "") {
     let localData = JSON.parse(localStorage.getItem("localData")) || [];
-    let tableau = document.createElement("table");
     localData.forEach((element, index) => {
+    let tableau = document.createElement("table");
       tableau.innerHTML = `
           <tr>
                 <td>${element}</td>
