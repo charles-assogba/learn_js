@@ -5,7 +5,7 @@ const tab = document.querySelector(".tab");
 //get input value by clicking the button +Todo
 button.addEventListener("click", () => {
   let inputValue = input.value.trim();
-  //create the localStorage and push input data into 
+  //create the localStorage and push input data into
   let localData = JSON.parse(localStorage.getItem("localData")) || [];
   localData.push(inputValue);
   //set the value of the localStorage (convert in JSON) to that localData I created😏
@@ -14,7 +14,7 @@ button.addEventListener("click", () => {
   if (inputValue !== "") {
     let localData = JSON.parse(localStorage.getItem("localData")) || [];
     localData.forEach((element, index) => {
-    let tableau = document.createElement("table");
+      let tableau = document.createElement("table");
       tableau.innerHTML = `
           <tr>
                 <td>${element}</td>
