@@ -5,12 +5,22 @@ const tab = document.querySelector(".tab");
 //get input value by clicking the button +Todo
 button.addEventListener("click", () => {
   let inputValue = input.value.trim();
-  //create the localStorage and push input data into
+  if (inputValue!=="") {
+    add(inputValue);
+  }
+});
+//function to add item
+const add = (inputValue) =>{
+ //create the localStorage and push input data into
   let localData = JSON.parse(localStorage.getItem("localData")) || [];
   localData.push(inputValue);
   //set the value of the localStorage (convert in JSON) to that localData I created😏
   localStorage.setItem("localData", JSON.stringify(localData));
-  //Here i insert the localData element into the table
+  display(inputValue);
+}
+//function to display
+const display = (inputValue) =>{
+//Here i insert the localData element into the table
   if (inputValue !== "") {
     let localData = JSON.parse(localStorage.getItem("localData")) || [];
     localData.forEach((element, index) => {
@@ -29,8 +39,8 @@ button.addEventListener("click", () => {
       input.value = "";
     });
   }
-});
-
+};
+display();
 //complete function
 const completeBtn = (button) => {
   const mark = button.parentElement.parentElement;
