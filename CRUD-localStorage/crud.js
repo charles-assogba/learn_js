@@ -9,7 +9,7 @@ button.addEventListener("click", () => {
     add(inputValue);
   }
 });
-//function to add item
+//function to add items
 const add = (inputValue) =>{
  //create the localStorage and push input data into
   let localData = JSON.parse(localStorage.getItem("localData")) || [];
@@ -27,7 +27,7 @@ const display = (inputValue) =>{
       let tableau = document.createElement("table");
       tableau.innerHTML = `
           <tr>
-                <td>${element}</td>
+                <td>${index}  ${element}</td>
                 <td>
                   <button class="btnComplete" onClick="completeBtn(this)">Complete</button>
                   <button class="btnEdit" onClick="editBtn(${index})">Edit</button>
