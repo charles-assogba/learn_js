@@ -23,8 +23,8 @@ const display = (inputValue) =>{
 //Here i insert the localData element into the table
   if (inputValue !== "") {
     let localData = JSON.parse(localStorage.getItem("localData")) || [];
+    let tableau = document.createElement("table");
     localData.forEach((element, index) => {
-      let tableau = document.createElement("table");
       tableau.innerHTML = `
           <tr>
                 <td>${index}  ${element}</td>
@@ -40,18 +40,23 @@ const display = (inputValue) =>{
     });
   }
 };
-display();
+
 //complete function
 const completeBtn = (button) => {
   const mark = button.parentElement.parentElement;
   mark.classList.toggle("completed");
 };
 
-//delete function
-const deleteBtn = (button) => {
-  const del = button.parentElement.parentElement;
-  del.remove();
-};
-
 //edit function
 const editBtn = (button) => {};
+
+//delete function
+const deleteBtn = (index) => {
+  let localData = JSON.parse(localStorage.getItem("localData")) || [];
+   localData.splice(index, 1);
+   localStorage.setItem("localData", JSON.stringify(localData));
+   //display();
+};
+
+
+display();
