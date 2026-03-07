@@ -1,6 +1,6 @@
 const input = document.querySelector(".input");
 const button = document.querySelector(".btn");
-const tab = document.querySelector(".tab");
+
 
 //get input value by clicking the button +Todo
 button.addEventListener("click", () => {
@@ -16,26 +16,27 @@ const add = (inputValue) =>{
   localData.push(inputValue);
   //set the value of the localStorage (convert in JSON) to that localData I created😏
   localStorage.setItem("localData", JSON.stringify(localData));
-  display(inputValue);
+  display();
 }
 //function to display
 const display = (inputValue) =>{
 //Here i insert the localData element into the table
   if (inputValue !== "") {
     let localData = JSON.parse(localStorage.getItem("localData")) || [];
-    let tableau = document.createElement("table");
+    const tab = document.querySelector(".tab");
+    tab.innerHTML="";
     localData.forEach((element, index) => {
-      tableau.innerHTML = `
-          <tr>
-                <td>${index}  ${element}</td>
+      let tr = document.createElement("tr");
+      tr.innerHTML = `
+         
+                <td>${element}</td>
                 <td>
                   <button class="btnComplete" onClick="completeBtn(this)">Complete</button>
                   <button class="btnEdit" onClick="editBtn(${index})">Edit</button>
                   <button class="btnDelete" onClick="deleteBtn(${index})">Delete</button>
-                </td>
-          </tr>
+                </td>  
       `;
-      tab.appendChild(tableau);
+      tab.appendChild(tr);
       input.value = "";
     });
   }
@@ -55,8 +56,7 @@ const deleteBtn = (index) => {
   let localData = JSON.parse(localStorage.getItem("localData")) || [];
    localData.splice(index, 1);
    localStorage.setItem("localData", JSON.stringify(localData));
-   //display();
+   display();
 };
-
 
 display();
