@@ -28,7 +28,6 @@ const display = (inputValue) =>{
     localData.forEach((element, index) => {
       let tr = document.createElement("tr");
       tr.innerHTML = `
-         
                 <td>${element}</td>
                 <td>
                   <button class="btnComplete" onClick="completeBtn(this)">Complete</button>
