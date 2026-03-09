@@ -46,8 +46,9 @@ const completeBtn = (index) => {
   const mark = index.parentElement.parentElement;
   if (mark.classList.toggle("completed")){
      let localData = JSON.parse(localStorage.getItem("localData")) || [];
-     localData.push(mark);
-    console.log(localData);
+     localData.push(index);
+     localStorage.setItem("localData", JSON.stringify(localData));
+     console.log(`Item "${index}" added to completed list.`);
   }else{
     console.log("Not complete");
   }
