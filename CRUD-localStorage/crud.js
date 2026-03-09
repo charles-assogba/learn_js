@@ -42,13 +42,21 @@ const display = (inputValue) =>{
 };
 
 //complete function
-const completeBtn = (button) => {
-  const mark = button.parentElement.parentElement;
-  mark.classList.toggle("completed");
+const completeBtn = (index) => {
+  const mark = index.parentElement.parentElement;
+  if (mark.classList.toggle("completed")){
+     let localData = JSON.parse(localStorage.getItem("localData")) || [];
+     localData.push(mark);
+    console.log(localData);
+  }else{
+    console.log("Not complete");
+  }
 };
 
 //edit function
-const editBtn = (button) => {};
+const editBtn = (index) => {
+
+};
 
 //delete function
 const deleteBtn = (index) => {
