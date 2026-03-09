@@ -13,7 +13,7 @@ button.addEventListener("click", () => {
 const add = (inputValue) =>{
  //create the localStorage and push input data into
   let localData = JSON.parse(localStorage.getItem("localData")) || [];
-  localData.push(inputValue);
+  localData.push(inputValue.trim());
   //set the value of the localStorage (convert in JSON) to that localData I created😏
   localStorage.setItem("localData", JSON.stringify(localData));
   display();
@@ -30,7 +30,7 @@ const display = (inputValue) =>{
       tr.innerHTML = `
                 <td>${element}</td>
                 <td>
-                  <button class="btnComplete" onClick="completeBtn(this)">Complete</button>
+                  <button class="btnComplete" onClick="completeBtn(${index})">Complete</button>
                   <button class="btnEdit" onClick="editBtn(${index})">Edit</button>
                   <button class="btnDelete" onClick="deleteBtn(${index})">Delete</button>
                 </td>  
@@ -43,14 +43,18 @@ const display = (inputValue) =>{
 
 //complete function
 const completeBtn = (index) => {
-  const mark = index.parentElement.parentElement;
-  if (mark.classList.toggle("completed")){
+  console.log(index);
+  const mark = index;
+  if (mark ==5){
      let localData = JSON.parse(localStorage.getItem("localData")) || [];
-     localData.push(index);
+     localData.push({text:element, completed: true});
      localStorage.setItem("localData", JSON.stringify(localData));
      console.log(`Item "${index}" added to completed list.`);
   }else{
-    console.log("Not complete");
+     let localData = JSON.parse(localStorage.getItem("localData")) || [];
+     localData.push({text:index, completed: false});
+     localStorage.setItem("localData", JSON.stringify(localData));
+     console.log(`Item "${index}" added to completed list.`);
   }
 };
 
