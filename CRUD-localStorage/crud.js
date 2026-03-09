@@ -30,7 +30,7 @@ const display = (inputValue) =>{
       tr.innerHTML = `
                 <td>${element}</td>
                 <td>
-                  <button class="btnComplete" onClick="completeBtn(${index})">Complete</button>
+                  <button class="btnComplete" onClick="completeBtn(this)">Complete</button>
                   <button class="btnEdit" onClick="editBtn(${index})">Edit</button>
                   <button class="btnDelete" onClick="deleteBtn(${index})">Delete</button>
                 </td>  
@@ -42,20 +42,14 @@ const display = (inputValue) =>{
 };
 
 //complete function
-const completeBtn = (index) => {
-  console.log(index);
-  const mark = index;
-  if (mark ==5){
+const completeBtn = (button) => {
      let localData = JSON.parse(localStorage.getItem("localData")) || [];
-     localData.push({text:element, completed: true});
+     localData.push({text:button, completed: true});
      localStorage.setItem("localData", JSON.stringify(localData));
-     console.log(`Item "${index}" added to completed list.`);
-  }else{
-     let localData = JSON.parse(localStorage.getItem("localData")) || [];
-     localData.push({text:index, completed: false});
-     localStorage.setItem("localData", JSON.stringify(localData));
-     console.log(`Item "${index}" added to completed list.`);
-  }
+     console.log(`Item "${button}" added to completed list.`);
+     const todoItem = button.parentElement.parentElement;
+     const toogle = todoItem.classList.toggle("completed");
+     console.log(toogle?"is on":"is off");
 };
 
 //edit function
