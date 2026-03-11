@@ -86,7 +86,7 @@ const editBtn = (index) => {
 
 //save function
 const saveBtn = (index)=>{
-console.log(value);
+console.log(input.value);
 }
 
 
