@@ -80,13 +80,14 @@ const editBtn = (index) => {
                 </td>  
       `;
       tab.appendChild(tr);
-      input.value = "";
     });
 };
 
 //save function
-const saveBtn = (index)=>{
-console.log(input.value);
+const saveBtn = (index) => {
+  
+//update the localStorage
+  localStorage.setItem("localData", JSON.stringify(localData));
 }
 
 
