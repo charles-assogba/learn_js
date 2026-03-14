@@ -89,7 +89,4 @@ const saveBtn = (index) => {
 //update the localStorage
   localStorage.setItem("localData", JSON.stringify(localData));
 }
-
-
-
 display();
