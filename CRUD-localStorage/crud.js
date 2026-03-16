@@ -73,7 +73,7 @@ const editBtn = (index) => {
                 <input type="text" value="${element}"/>
                 </td>
                 <td>
-                  <button class="btnSave" onClick="saveBtn(${i})">Save</button>
+                  <button class="btnSave" onClick="saveBtn(this,${i})">Save</button>
                   <button class="btnDelete" onClick="deleteBtn(${i})">Delete</button>
                 </td>  
       `;
@@ -92,13 +92,13 @@ const editBtn = (index) => {
 };
 
 //save function
-const saveBtn = (index) => {
+const saveBtn = (button,index) => {
   let localData = JSON.parse(localStorage.getItem("localData")) || [];
 
-  //get the edited value
-  const inputs = document.querySelectorAll(".tab input");
-  const newValue = inputs[index].value.trim();
-
+  //get the input inside the same row
+  const row = button.parentElement.parentElement;
+  const newValue = row.querySelector("input").value.trim();
+  
   if (newValue !== "") {
     localData[index] = newValue; //update the item
     localStorage.setItem("localData", JSON.stringify(localData));
