@@ -20,13 +20,12 @@ const add = (inputValue) => {
 //function to display
 const display = (inputValue) => {
   //Here i insert the localData element into the table
-  if (inputValue !== "") {
-    let localData = JSON.parse(localStorage.getItem("localData")) || [];
-    const tab = document.querySelector(".tab");
-    tab.innerHTML = "";
-    localData.forEach((element, index) => {
-      let tr = document.createElement("tr");
-      tr.innerHTML = `
+  let localData = JSON.parse(localStorage.getItem("localData")) || [];
+  const tab = document.querySelector(".tab");
+  tab.innerHTML = "";
+  localData.forEach((element, index) => {
+    let tr = document.createElement("tr");
+    tr.innerHTML = `
                 <td>${element}</td>
                 <td>
                   <button class="btnComplete" onClick="completeBtn(this)">Complete</button>
@@ -34,10 +33,9 @@ const display = (inputValue) => {
                   <button class="btnDelete" onClick="deleteBtn(${index})">Delete</button>
                 </td>  
       `;
-      tab.appendChild(tr);
-      input.value = "";
-    });
-  }
+    tab.appendChild(tr);
+    input.value = "";
+  });
 };
 
 //complete function
@@ -65,28 +63,46 @@ const deleteBtn = (index) => {
 //edit function
 const editBtn = (index) => {
   let localData = JSON.parse(localStorage.getItem("localData")) || [];
-    const tab = document.querySelector(".tab");
-    tab.innerHTML = "";
-    localData.forEach((element, index) => {
-      let tr = document.createElement("tr");
+  const tab = document.querySelector(".tab");
+  tab.innerHTML = "";
+  localData.forEach((element, i) => {
+    let tr = document.createElement("tr");
+    if (i == index) {
       tr.innerHTML = `
                 <td>
                 <input type="text" value="${element}"/>
                 </td>
                 <td>
-                  <button class="btnComplete" onClick="completeBtn(this)">Complete</button>
-                  <button class="btnSave" onClick="saveBtn(${index})">Save</button>
-                  <button class="btnDelete" onClick="deleteBtn(${index})">Delete</button>
+                  <button class="btnSave" onClick="saveBtn(${i})">Save</button>
+                  <button class="btnDelete" onClick="deleteBtn(${i})">Delete</button>
                 </td>  
       `;
-      tab.appendChild(tr);
-    });
+    } else {
+      tr.innerHTML = `
+        <td>${element}</td>
+        <td>
+          <button class="btnComplete" onClick="completeBtn(this)">Complete</button>
+          <button class="btnEdit" onClick="editBtn(${i})">Edit</button>
+          <button class="btnDelete" onClick="deleteBtn(${i})">Delete</button>
+        </td>
+      `;
+    }
+    tab.appendChild(tr);
+  });
 };
 
 //save function
 const saveBtn = (index) => {
-  
-//update the localStorage
-  localStorage.setItem("localData", JSON.stringify(localData));
-}
+  let localData = JSON.parse(localStorage.getItem("localData")) || [];
+
+  //get the edited value
+  const inputs = document.querySelectorAll(".tab input");
+  const newValue = inputs[index].value.trim();
+
+  if (newValue !== "") {
+    localData[index] = newValue; //update the item
+    localStorage.setItem("localData", JSON.stringify(localData));
+    display(); //refresh table
+  }
+};
 display();
